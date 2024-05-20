@@ -1,0 +1,35 @@
+services: 
+  platform: 
+    build: 
+      context: ../platform
+      target: platform-local
+      args: 
+        DOCKER_UID: ${DOCKER_UID-1000}
+        DOCKER_GID: ${DOCKER_GID-1000}
+    volumes: 
+      - ../platform:/var/www/html/:delegated
+    environment: 
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+
+  platform_webserver: 
+    build: 
+      context: ../platform
+      target: webserver-local
+    volumes: 
+      - ../platform:/var/www/html/:delegated
+
+  platform_vite: 
+    image: thecodingmachine/nodejs:v2-20-bullseye
+    volumes: 
+      - ../platform:/usr/src/app/:delegated
+    labels: 
+      - traefik.enable=true
+      - traefik.http.routers.platform_vite.rule=Host(`vite.${DOMAIN}`)
+      - traefik.http.services.platform_vite.loadbalancer.server.port=5173
+    environment:
+      APP_NAME: ${APP_NAME}
+      APP_URL: ${HTTP_PROTOCOL}://${DOMAIN}
+      STARTUP_COMMAND_1: yarn
+      STARTUP_COMMAND_2: yarn dev --host
+      VITE_SERVER_HMR_PORT: 80
+      VITE_SERVER_HMR_HOST: vite.${DOMAIN}

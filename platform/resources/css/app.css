@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+*, body, html, ::after, ::before {
+    @apply m-0 p-0 border-0 box-border;
+}
+
+/* width */
+::-webkit-scrollbar {
+    @apply w-1 h-1;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply dark:bg-transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-white;
+}
+
+@layer base {
+    *, body, html {
+        font-family: 'Chakra Petch', monospace;
+        font-weight: 500;
+    }
+}
