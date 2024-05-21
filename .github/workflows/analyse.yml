@@ -3,7 +3,7 @@ name: "Static Analysis"
 on: [ push, pull_request ]
 
 env:
-  WORKING_DIR_API: "./platform/"
+  WORKING_DIR_API: "platform"
   PROJECT_NAME: 'actual'
 
 jobs:
