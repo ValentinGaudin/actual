@@ -7,6 +7,5 @@
         "moduleResolution": "Node",
         "allowSyntheticDefaultImports": true
     },
-    "include": ["./tailwind.config.js"],
-    "exclude": ["vite.config.ts"]
+    "include": ["./vite.config.ts", "./tailwind.config.js"],
 }

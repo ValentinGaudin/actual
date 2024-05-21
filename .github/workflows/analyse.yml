@@ -91,3 +91,11 @@ jobs:
         run: "composer run-script pest"
         working-directory: ${{ env.WORKING_DIR_API }}
 
+      - name: Execute linter analysis
+        run: "yarn lint"
+        working-directory: ${{ env.WORKING_DIR_API }}
+
+      - name: Execute typescript type analysis
+        run: "yarn tsc"
+        working-directory: ${{ env.WORKING_DIR_API }}
+

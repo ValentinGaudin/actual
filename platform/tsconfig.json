@@ -27,10 +27,10 @@
 		"./resources/js/**/*.ts",
 		"./resources/js/**/*.d.ts",
 		"./resources/js/**/*.tsx",
-		"./tailwind.config.js"
+		"./tailwind.config.js",
+        "./vite.config.ts"
 	],
 	"exclude": [
-        "./vite.config.ts",
 		"./coverage/**/*.js",
 		"./vendor",
 		"./node_modules",

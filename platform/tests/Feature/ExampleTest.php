@@ -1,7 +1,9 @@
 <?php
 
-it('returns a successful response', function () {
-    $response = $this->get('/');
+declare(strict_types=1);
 
-    $response->assertStatus(200);
+use function Pest\Laravel\get;
+
+it('returns a successful response', function () {
+    get('/')->assertStatus(200);
 });
