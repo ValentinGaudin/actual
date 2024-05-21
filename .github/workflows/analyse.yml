@@ -43,11 +43,11 @@ jobs:
         working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
         working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Build dependencies
-        run: npm run build
+        run: yarn run build
         working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Up Laravel Application
