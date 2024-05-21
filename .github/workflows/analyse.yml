@@ -3,7 +3,7 @@ name: "Static Analysis"
 on: [ push, pull_request ]
 
 env:
-  WORKING_DIR_API: "./api/"
+  WORKING_DIR_API: "./platform/"
   PROJECT_NAME: 'actual'
 
 jobs:
@@ -17,10 +17,10 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_DATABASE: ${{ PROJECT_NAME }}
-          MYSQL_USER: ${{ PROJECT_NAME }}
-          MYSQL_PASSWORD: ${{ PROJECT_NAME }}
-          MYSQL_ROOT_PASSWORD: ${{ PROJECT_NAME }}
+          MYSQL_DATABASE: ${{ env.PROJECT_NAME }}
+          MYSQL_USER: ${{ env.PROJECT_NAME }}
+          MYSQL_PASSWORD: ${{ env.PROJECT_NAME }}
+          MYSQL_ROOT_PASSWORD: ${{ env.PROJECT_NAME }}
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -42,52 +42,52 @@ jobs:
 
       - name: Install dependencies
         run: "composer install --ignore-platform-reqs"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Validate composer
         run: "composer validate --strict"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Up Laravel Application
         run: |
-          cd ${{ WORKING_DIR_API }}/
+          cd ${{ env.WORKING_DIR_API }}/
           cp .env.example .env 
           php artisan key:generate
 
       - name: Require Laravel Pint
         run: "composer require laravel/pint --dev --no-update --no-interaction --no-progress"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Require Laravel Stan
         run: "composer require larastan/larastan:^2.0 --dev --no-update --no-interaction --no-progress"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Require Laravel Pest
         run: "composer require pestphp/pest --dev --with-all-dependencies --no-update --no-interaction --no-progress"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Require Laravel Pest dependency
         run: "composer require pestphp/pest-plugin-laravel --dev --with-all-dependencies --no-update --no-interaction --no-progress"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Execute linter analysis
         run: "composer run-script pint"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Execute static analysis
         run: "composer run-script stan"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Execute pest analysis
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: ${{ PROJECT_NAME }}
-          DB_USERNAME: ${{ PROJECT_NAME }}
-          DB_PASSWORD: ${{ PROJECT_NAME }}
+          DB_DATABASE: ${{ env.PROJECT_NAME }}
+          DB_USERNAME: ${{ env.PROJECT_NAME }}
+          DB_PASSWORD: ${{ env.PROJECT_NAME }}
           CACHE_DRIVER: array
           QUEUE_CONNECTION: sync
         run: "composer run-script pest"
-        working-directory: ${{ WORKING_DIR_API }}
+        working-directory: ${{ env.WORKING_DIR_API }}
 
