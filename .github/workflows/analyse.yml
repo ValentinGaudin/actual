@@ -13,39 +13,41 @@ jobs:
       matrix:
         php: [ "8.3" ]
         laravel: [ "^11.0"]
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_DATABASE: ${{ env.PROJECT_NAME }}
-          MYSQL_USER: ${{ env.PROJECT_NAME }}
-          MYSQL_PASSWORD: ${{ env.PROJECT_NAME }}
-          MYSQL_ROOT_PASSWORD: ${{ env.PROJECT_NAME }}
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     name: "P${{ matrix.php }} - L${{ matrix.laravel }}"
 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: Setup PHP
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php }}"
-          extensions: "gd, intl, fileinfo"
-          tools: "composer:v2"
-          coverage: "none"
+          extensions: json, dom, curl, libxml, mbstring, zip, gd, intl, fileinfo
+          tools: composer:v2
+          coverage: xdebug
+
+      - name: Set up Node & NPM
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.x'
 
       - name: Install dependencies
-        run: "composer install --ignore-platform-reqs"
+        run: composer install --no-interaction --no-progress --ansi
         working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Validate composer
-        run: "composer validate --strict"
+        run: composer validate --strict
+        working-directory: ${{ env.WORKING_DIR_API }}
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{ env.WORKING_DIR_API }}
+
+      - name: Build dependencies
+        run: npm run build
         working-directory: ${{ env.WORKING_DIR_API }}
 
       - name: Up Laravel Application
@@ -54,48 +56,6 @@ jobs:
           cp .env.example .env 
           php artisan key:generate
 
-      - name: Require Laravel Pint
-        run: "composer require laravel/pint --dev --no-update --no-interaction --no-progress"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Require Laravel Stan
-        run: "composer require larastan/larastan:^2.0 --dev --no-update --no-interaction --no-progress"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Require Laravel Pest
-        run: "composer require pestphp/pest --dev --with-all-dependencies --no-update --no-interaction --no-progress"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Require Laravel Pest dependency
-        run: "composer require pestphp/pest-plugin-laravel --dev --with-all-dependencies --no-update --no-interaction --no-progress"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Execute linter analysis
-        run: "composer run-script pint"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Execute static analysis
-        run: "composer run-script stan"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Execute pest analysis
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_DATABASE: ${{ env.PROJECT_NAME }}
-          DB_USERNAME: ${{ env.PROJECT_NAME }}
-          DB_PASSWORD: ${{ env.PROJECT_NAME }}
-          CACHE_DRIVER: array
-          QUEUE_CONNECTION: sync
-        run: "composer run-script pest"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Execute linter analysis
-        run: "yarn lint"
-        working-directory: ${{ env.WORKING_DIR_API }}
-
-      - name: Execute typescript type analysis
-        run: "yarn tsc"
-        working-directory: ${{ env.WORKING_DIR_API }}
+      - name: Tests
+        run: composer test
 
