@@ -10,9 +10,10 @@
 
         <!-- Scripts -->
         @viteReactRefresh
-        @vite(['resources/js/app.tsx'])
+        @vite(['resources/js/main.tsx'])
+
     </head>
     <body class="font-sans antialiased">
-        <div id="app"></div>
+        <div id="root"></div>
     </body>
 </html>

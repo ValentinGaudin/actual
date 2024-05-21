@@ -14,8 +14,7 @@
         "plugin:prettier/recommended",
         "plugin:import/recommended",
         "plugin:react/jsx-runtime",
-        "plugin:react/recommended",
-        "next/core-web-vitals"
+        "plugin:react/recommended"
     ],
     // Specifying Parser
     "parser": "@typescript-eslint/parser",
@@ -41,7 +40,7 @@
             "node": {
                 "extensions": [".ts", ".tsx"]
             },
-            "typescript": true
+            "typescript": {}
         },
         "react": {
             "version": "18.x"

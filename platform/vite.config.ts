@@ -1,7 +1,31 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig, loadEnv } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-})
+export default ({ mode, command }) => {
+	const { VITE_SERVER_HMR_PORT: clientPort, VITE_SERVER_HMR_HOST: host } =
+		loadEnv(mode, process.cwd());
+
+	return defineConfig({
+		server: {
+			hmr: {
+				clientPort: parseInt(clientPort),
+				host,
+			},
+		},
+		resolve: {
+			alias: {
+				'@': '/resources/js',
+			},
+		},
+		plugins: [
+			laravel({
+				input: 'resources/js/main.tsx',
+				refresh: true,
+			}),
+			react({
+				jsxRuntime: 'classic',
+			}),
+		],
+	});
+};
