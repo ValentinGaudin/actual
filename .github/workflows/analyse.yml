@@ -58,4 +58,5 @@ jobs:
 
       - name: Tests
         run: composer test
+        working-directory: ${{ env.WORKING_DIR_API }}
 
