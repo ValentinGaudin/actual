@@ -4,7 +4,7 @@ import { useThemeStore, useToasterStore } from '@/hooks';
 import {
 	CircleExclamationIcon,
 	CircleValidIcon,
-} from '@/components/atoms/icons';
+} from '@/Components/atoms/icons';
 
 type Props = {
 	toast: ToastT;
@@ -54,7 +54,7 @@ const Toast = ({ toast }: Props) => {
 					? 'active opacity-100 translate-x-0'
 					: 'translate-x-full opacity-0'
 			} group/toast flex items-center justify-center
-			min-w-[200px] md:min-w-[300px] max-w-[400px] m-2 
+			min-w-[200px] md:min-w-[300px] max-w-[400px] m-2
 			${toastColor} backdrop-blur-md
 			dark:backdrop-brightness-200 backdrop-contrast-200
 			transition-all ease-out duration-500

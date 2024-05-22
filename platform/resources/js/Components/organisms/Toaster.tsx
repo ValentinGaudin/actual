@@ -1,8 +1,8 @@
 import React from 'react';
-
-import { useToasterStore } from '@/hooks';
-import { Toast } from '@/components/atoms';
 import { createPortal } from 'react-dom';
+
+import { Toast } from '@/Components/atoms';
+import { useToasterStore } from '@/hooks';
 
 type Props = {
 	children: React.ReactNode;
