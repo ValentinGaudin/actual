@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
 	return (
-		<aside className="fixed top-[3.3rem] dark:bg-dark-blue dark:text-white bg-white text-dark transition-colors w-52 lg:w-64 h-[100vh]">
+		<aside className="fixed top-[3.3rem] dark:bg-dark-blue dark:text-white bg-white text-dark transition-colors w-32 md:w-52 lg:w-64 h-[100vh]">
 			<nav>
 				<ul className="w-full p-4">
 					<li className="">

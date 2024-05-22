@@ -8,7 +8,9 @@ use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Throwable;
 
 final class CandidateController extends Controller
 {
@@ -47,8 +49,8 @@ final class CandidateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Candidate $candidate): void
+    public function destroy(Candidate $candidate): JsonResponse
     {
-        //
+        return response()->json(['message' => $candidate->delete() ? 'Candidate deleted' : 'Candidate not deleted']);
     }
 }

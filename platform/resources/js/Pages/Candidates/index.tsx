@@ -26,7 +26,7 @@ const Index = () => {
 
 	return (
 		<div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto w-ful">
-			<div className="inline-block min-w-full shadow rounded-lg overflow-hidden w-full">
+			<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
 				<table className="min-w-full leading-normal">
 					<CandidateHead />
 					{data && <CandidateBody candidates={data} />}

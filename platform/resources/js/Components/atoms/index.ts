@@ -1,4 +1,5 @@
 export { default as CandidatCell } from './CandidatCell';
+export { default as CandidateDeleteButton } from './CandidateDeleteButton.tsx';
 export { default as CandidateHead } from './CandidateHead';
 export { default as Header } from './Header';
 export { default as Nav } from './Nav';

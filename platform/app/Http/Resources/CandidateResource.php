@@ -22,6 +22,7 @@ final class CandidateResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->getKey(),
             'last_name' => $this->last_name,
             'first_name' => $this->first_name,
             'full_name' => $this->full_name,

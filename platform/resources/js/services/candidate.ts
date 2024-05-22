@@ -1,7 +1,9 @@
+import z from 'zod';
+
 import instance from './instance';
 
-import { CandidateSchema } from '@/types/Candidate';
-import z from 'zod';
+import { CandidateSchema, PayloadDeleteCandidate } from '@/types/Candidate';
+import { ApiResponseSchema } from '@/types/Api';
 
 const getCandidates = async () => {
 	const response = await instance.get(`candidates`);
@@ -18,4 +20,20 @@ const getCandidates = async () => {
 	return Promise.reject({ data: 'Invalid data' });
 };
 
-export { getCandidates };
+const deleteCandidate = async (candidate: PayloadDeleteCandidate) => {
+	const response = await instance.delete(`candidates/${candidate.id.toString()}`);
+
+    const data = await response.json();
+
+    console.log(data);
+    const deleteCandidateResponse = ApiResponseSchema.safeParse(data);
+
+	console.log(deleteCandidateResponse);
+
+	if (deleteCandidateResponse.success) {
+		return Promise.resolve(deleteCandidateResponse.data);
+	}
+	return Promise.reject({ message: 'Invalid data' });
+};
+
+export { getCandidates, deleteCandidate };
