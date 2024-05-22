@@ -42,11 +42,13 @@
     },
     "dependencies": {
         "@tanstack/react-query": "^5.37.1",
+        "@tanstack/react-query-devtools": "4",
         "axios": "^1.7.1",
         "ky": "^1.2.4",
         "laravel-vite-plugin": "^1.0.4",
         "localforage": "^1.10.0",
         "match-sorter": "^6.3.4",
+        "react-router": "^6.23.1",
         "react-router-dom": "^6.23.1",
         "sort-by": "^1.2.0",
         "zod": "^3.22.4",

@@ -1,10 +1,17 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
-const BaseTemplate = ({ children }: PropsWithChildren) => {
+import { Nav, Header } from '@/Components/atoms';
+import Root from '@/routes/root';
+
+const BaseTemplate = () => {
 	return (
-		<div className="flex flex-col relative min-h-screen bg-white dark:bg-dark-blue">
-			{children}
-		</div>
+		<>
+			<Header />
+			<div className="flex">
+				<Nav />
+				<Root />
+			</div>
+		</>
 	);
 };
 

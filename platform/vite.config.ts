@@ -24,7 +24,7 @@ export default ({ mode }: ViteConfig) => {
 		},
 		plugins: [
 			laravel({
-				input: 'resources/js/main.tsx',
+				input: ['resources/css/app.css', 'resources/js/main.tsx'],
 				refresh: true,
 			}),
 			react({

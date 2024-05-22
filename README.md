@@ -59,6 +59,7 @@ docker compose up --build -d
 ### Routing
 
 - [Home](https://actual.localhost)
+- [PhpMyAdmin](https://pma.actual.localhost)
 
 ## Contact
 

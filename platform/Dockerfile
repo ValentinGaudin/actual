@@ -1,7 +1,7 @@
 ######################
 ### PHP BASE IMAGE ###
 ######################
-FROM php:8.3-fpm-alpine AS platform-base
+FROM php:8.3-fpm-alpine AS api-base
 
 ARG DOCKER_UID
 ARG DOCKER_GID
@@ -35,7 +35,7 @@ USER www-data
 ############################
 ### platform LOCAL IMAGE ####
 ############################
-FROM platform-base AS platform-local
+FROM api-base AS api-local
 
 USER root
 
@@ -57,3 +57,24 @@ FROM webserver-base AS webserver-local
 
 ADD docker/nginx/local/conf.d-default.conf /etc/nginx/conf.d/default.conf
 ADD docker/nginx/local/nginx.conf /etc/nginx/nginx.conf
+
+#######################
+### NODE BASE IMAGE ###
+#######################
+FROM node:lts-alpine AS platform-base
+
+RUN apk --update --no-cache add nano bash
+
+WORKDIR /usr/src/app
+
+########################
+### NODE LOCAL IMAGE ###
+########################
+FROM platform-base AS platform-local
+
+ENV NODE_ENV=development
+
+COPY docker/node/docker-entrypoint-local.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 3000
