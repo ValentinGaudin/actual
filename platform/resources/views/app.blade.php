@@ -14,6 +14,7 @@
 
     </head>
     <body>
-        <div id="root"></div>
+        <div id="portal-root" class="fixed w-full z-50"></div>
+        <div id="root" class="dark:bg-dark-blue bg-white"></div>
     </body>
 </html>

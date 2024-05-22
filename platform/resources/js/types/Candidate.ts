@@ -2,10 +2,11 @@ import z from 'zod';
 export const CandidateSchema = z.object({
 	last_name: z.string(),
 	first_name: z.string(),
+    full_name: z.string(),
 	email: z.string(),
-	birthdate: z.date(),
-	updated_at: z.date(),
-	created_at: z.date(),
+    birthday: z.string(),
+	updated_at: z.string(),
+	created_at: z.string(),
 });
 
 export type Candidate = z.infer<typeof CandidateSchema>;

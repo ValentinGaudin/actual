@@ -18,18 +18,8 @@ export default {
 			},
 			backgroundImage: {},
 			colors: {
-				marble: {
-					DEFAULT: '#F2F8FC',
-				},
-				'cold-steel': {
-					DEFAULT: '#F8F7F4',
-				},
 				'dark-blue': {
-					DEFAULT: '#0A2342',
-				},
-				dark: {
-					light: '#111015',
-					DEFAULT: '#151623',
+					DEFAULT: '#10172a',
 				},
 			},
 			animation: {
