@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+<<<<<<< Updated upstream:platform/resources/js/Pages/Candidates/index.tsx
 import { getCandidates } from '@/services/candidate';
 import { CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
+=======
+import { AddCandidate, CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
+>>>>>>> Stashed changes:platform/resources/js/Pages/Candidates/Candidates.tsx
 import { CandidateBody } from '@/Components/molecules';
+
+import { getCandidates } from '@/services/candidate';
+
 import { useToasterStore } from '@/hooks';
 
-const Index = () => {
+const Candidates = () => {
 	const showToast = useToasterStore((state) => state.showToast);
 
 	const { isLoading, data, isError, error } = useQuery({
@@ -37,4 +44,4 @@ const Index = () => {
 	);
 };
 
-export default Index;
+export default Candidates;
