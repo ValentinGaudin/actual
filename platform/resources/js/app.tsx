@@ -1,17 +1,32 @@
 import React, { useEffect } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router';
 
-import Home from '@/Pages/Home';
-import Index from '@/Pages/Candidates';
-import { BaseTemplate } from '@/Components/templates';
+import { ErrorPage } from '@/Components/atoms';
 import { Toaster } from '@/Components/organisms';
+import { BaseTemplate } from '@/Components/templates';
+import { Candidates } from '@/Pages/Candidates';
 
 import { useThemeStore } from '@/hooks';
 
 const App = () => {
 	const { theme } = useThemeStore();
+
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: <BaseTemplate />,
+			errorElement: <ErrorPage />,
+			children: [
+				{
+					index: true,
+					element: <Candidates />,
+				},
+			],
+		},
+	]);
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -21,14 +36,7 @@ const App = () => {
 		}
 	}, [theme]);
 
-	return (
-		<BaseTemplate>
-			<Routes>
-				<Route path="/" Component={Home} />
-				<Route path="/candidates" Component={Index} />
-			</Routes>
-		</BaseTemplate>
-	);
+	return <RouterProvider router={router} />;
 };
 
 const Wrapper = () => {
