@@ -12,7 +12,7 @@ type Props = {
 	candidate: Candidate;
 };
 
-const CandidateDeleteButton = ({ candidate }: Props) => {
+const CandidateDelete = ({ candidate }: Props) => {
 	const showToast = useToasterStore((state) => state.showToast);
 
 	const queryClient = useQueryClient();
@@ -29,14 +29,14 @@ const CandidateDeleteButton = ({ candidate }: Props) => {
 				message: error ? error.message : 'Something goes wrong',
 			});
 		},
-		onSuccess: () => {
+		onSuccess: async () => {
 			showToast({
 				type: 'success',
 				message: candidateMutation.data
 					? candidateMutation.data.message
 					: 'Successfully deleted candidate',
 			});
-			queryClient.invalidateQueries({ queryKey: ['candidates'] });
+			await queryClient.invalidateQueries({ queryKey: ['candidates'] });
 		},
 	});
 
@@ -56,4 +56,4 @@ const CandidateDeleteButton = ({ candidate }: Props) => {
 	);
 };
 
-export default CandidateDeleteButton;
+export default CandidateDelete;

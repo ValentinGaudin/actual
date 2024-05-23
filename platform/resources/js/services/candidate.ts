@@ -21,14 +21,13 @@ const getCandidates = async () => {
 };
 
 const deleteCandidate = async (candidate: PayloadDeleteCandidate) => {
-	const response = await instance.delete(`candidates/${candidate.id.toString()}`);
+	const response = await instance.delete(
+		`candidates/${candidate.id.toString()}`
+	);
 
-    const data = await response.json();
+	const data = await response.json();
 
-    console.log(data);
-    const deleteCandidateResponse = ApiResponseSchema.safeParse(data);
-
-	console.log(deleteCandidateResponse);
+	const deleteCandidateResponse = ApiResponseSchema.safeParse(data);
 
 	if (deleteCandidateResponse.success) {
 		return Promise.resolve(deleteCandidateResponse.data);

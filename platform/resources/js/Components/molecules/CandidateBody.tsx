@@ -1,5 +1,5 @@
 import React from 'react';
-import { CandidatCell, CandidateDeleteButton } from '@/Components/atoms';
+import { CandidateCell, CandidateDeleteButton } from '@/Components/atoms';
 import { Candidate } from '@/types/Candidate';
 
 type Props = {
@@ -10,10 +10,10 @@ const CandidateBody = ({ candidates }: Props) => {
 		<tbody>
 			{candidates.map((candidate, key) => (
 				<tr key={key}>
-					<CandidatCell candidateKey={candidate.full_name} />
-					<CandidatCell candidateKey={candidate.full_name} />
-					<CandidatCell candidateKey={candidate.birthday} />
-					<CandidatCell candidateKey={candidate.created_at} />
+					<CandidateCell candidateKey={candidate.full_name} />
+					<CandidateCell candidateKey={candidate.full_name} />
+					<CandidateCell candidateKey={candidate.birthday} />
+					<CandidateCell candidateKey={candidate.created_at} />
 					<CandidateDeleteButton candidate={candidate} />
 				</tr>
 			))}
