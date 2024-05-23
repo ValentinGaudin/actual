@@ -27,6 +27,14 @@ final class Candidate extends Model
     protected $appends = ['full_name'];
 
     /**
+     * @return Attribute<string, string>
+     */
+    public function fullName(): Attribute
+    {
+        return Attribute::get(fn () => $this->last_name.' '.$this->first_name);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return string[]
@@ -38,10 +46,5 @@ final class Candidate extends Model
             'created_at' => 'datetime',
             'birthday' => 'datetime',
         ];
-    }
-
-    public function fullName(): Attribute
-    {
-        return Attribute::get(fn () => $this->last_name . ' ' . $this->first_name);
     }
 }
