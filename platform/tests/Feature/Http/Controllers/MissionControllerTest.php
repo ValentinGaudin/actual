@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Testing\Fluent\AssertableJson;
+
 use function Pest\Laravel\get;
 
 describe('Missions controller', function () {
@@ -11,7 +12,7 @@ describe('Missions controller', function () {
         get('/api/missions')
             ->assertSuccessful()
             ->assertJsonIsArray('data')
-            ->assertJson(fn(AssertableJson $json) => $json->has('data', 20)
+            ->assertJson(fn (AssertableJson $json) => $json->has('data', 20)
             );
     });
 });

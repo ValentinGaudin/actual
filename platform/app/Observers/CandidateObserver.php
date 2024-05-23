@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Observers;
 
 use App\Models\Candidate;
 
-class CandidateObserver
+final class CandidateObserver
 {
     /**
      * Handle the Candidate "deleted" event.
@@ -12,13 +14,5 @@ class CandidateObserver
     public function deleting(Candidate $candidate): void
     {
         $candidate->missions()->sync([]);
-    }
-
-    /**
-     * Handle the Candidate "force deleted" event.
-     */
-    public function forceDeleted(Candidate $candidate): void
-    {
-        dd('stop');
     }
 }

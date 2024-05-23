@@ -10,7 +10,6 @@ use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Symfony\Component\HttpFoundation\Response;
 
 final class CandidateController extends Controller
 {

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Resources\CandidateResource;
 use App\Http\Resources\MissionResource;
-use App\Models\Candidate;
 use App\Models\Mission;
 use Illuminate\Http\Request;
 
