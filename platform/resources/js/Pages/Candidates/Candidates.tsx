@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { getCandidates } from '@/services/candidate';
-import { CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
+import { AddCandidate, CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
 import { CandidateBody } from '@/Components/molecules';
 import { useToasterStore } from '@/hooks';
 
@@ -25,15 +25,20 @@ const Index = () => {
 	}, [isError]);
 
 	return (
-		<div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto w-ful">
-			<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
-				<table className="min-w-full leading-normal">
-					<CandidateHead />
-					{data && <CandidateBody candidates={data} />}
-					{isLoading && <SkeletonCandidateBody />}
-				</table>
+		<>
+			<div className="self-end mr-1">
+				<AddCandidate />
 			</div>
-		</div>
+			<div className="overflow-x-auto w-full mt-4">
+				<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
+					<table className="min-w-full leading-normal">
+						<CandidateHead />
+						{data && <CandidateBody candidates={data} />}
+						{isLoading && <SkeletonCandidateBody />}
+					</table>
+				</div>
+			</div>
+		</>
 	);
 };
 

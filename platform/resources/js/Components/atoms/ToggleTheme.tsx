@@ -9,7 +9,7 @@ const ToggleTheme = () => {
 		<div className={`flex items-center justify-center h-full transition-all`}>
 			<label
 				htmlFor="toggle-theme"
-				className="inline-flex items-center p-1 cursor-pointer bg-gray-300 dark:text-gray-800 rounded-full shadow-md drop-shadow-md dark:shadow-lg shadow-ternary-light dark:shadow-primary-light"
+				className="inline-flex items-center p-1 cursor-pointer bg-gray-200 dark:bg-gray-600/80 dark:text-gray-800 rounded-full shadow-md drop-shadow-md dark:shadow-lg shadow-ternary-light dark:shadow-primary-light"
 			>
 				<div className="relative">
 					<input
@@ -19,13 +19,13 @@ const ToggleTheme = () => {
 						checked={theme === 'dark'}
 						onChange={toggleTheme}
 					/>
-					<div className="block bg-ternary-light dark:bg-primary-light shadow-sm w-9 md:w-12 h-[1.3rem] md:h-7 rounded-full cursor-pointer"></div>
-					<div className="peer-checked:translate-x-full bg-white absolute left-1 top-1 w-[0.8rem] md:w-5 h-[0.8rem] md:h-5 rounded-full transition-all duration-500 delay-100">
+					<div className="block bg-gray-400/90 dark:bg-gray-500/80 shadow-sm w-9 md:w-12 h-[1.3rem] md:h-7 rounded-full cursor-pointer"></div>
+					<div className="peer-checked:translate-x-full bg-gray-200 dark:bg-dark-blue  absolute left-1 top-1 w-[0.8rem] md:w-5 h-[0.8rem] md:h-5 rounded-full transition-all duration-500 delay-100">
 						<span className="flex justify-center items-center w-full h-full">
 							{theme !== 'dark' ? (
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
+									fill="dark"
 									viewBox="0 0 24 24"
 									strokeWidth={1.5}
 									stroke="currentColor"
@@ -40,7 +40,7 @@ const ToggleTheme = () => {
 							) : (
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
+									fill="white"
 									viewBox="0 0 24 24"
 									strokeWidth={1.5}
 									stroke="currentColor"
