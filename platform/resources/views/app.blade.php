@@ -10,10 +10,11 @@
 
         <!-- Scripts -->
         @viteReactRefresh
-        @vite(['resources/js/main.tsx'])
+        @vite(['resources/css/app.css', 'resources/js/main.tsx'])
 
     </head>
-    <body class="font-sans antialiased">
-        <div id="root"></div>
+    <body>
+        <div id="portal-root" class="fixed w-full z-50"></div>
+        <div id="root" class="dark:bg-dark-blue bg-white"></div>
     </body>
 </html>
