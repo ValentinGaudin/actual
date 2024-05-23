@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Models;
 
 use App\Models\Candidate;
@@ -7,7 +9,7 @@ use Illuminate\Support\Carbon;
 
 describe('Candidate model', function () {
     it('has correct fillable properties', function () {
-        $candidate = new Candidate();
+        $candidate = new Candidate;
 
         expect($candidate->getFillable())
             ->toEqual(['first_name', 'last_name', 'email', 'birthday']);

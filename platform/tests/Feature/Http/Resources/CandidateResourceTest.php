@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 use App\Http\Resources\CandidateResource;
@@ -21,7 +20,7 @@ describe('Candidates Resources', function () {
         ]);
 
         $resource = new CandidateResource($candidate);
-        $response = $resource->toArray(new Request());
+        $response = $resource->toArray(new Request);
 
         expect($response)->toEqual([
             'id' => 1,

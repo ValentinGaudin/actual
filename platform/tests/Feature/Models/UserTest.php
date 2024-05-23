@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 use App\Models\User;
@@ -9,12 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 describe('User model', function () {
     it('has correct fillable properties', function () {
-        $user = new User();
+        $user = new User;
         expect($user->getFillable())->toEqual(['name', 'email', 'password']);
     });
 
     it('has correct hidden properties', function () {
-        $user = new User();
+        $user = new User;
         expect($user->getHidden())->toEqual(['password', 'remember_token']);
     });
 
