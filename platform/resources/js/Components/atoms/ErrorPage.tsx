@@ -8,13 +8,13 @@ const ErrorPage = () => {
 
 	const errorMessage = useMemo(() => {
 		if (isRouteErrorResponse(error)) {
-			return error.statusText;
+			return { message: error.statusText, code: error.status };
 		} else if (error instanceof Error) {
-			return error.message;
+			return { message: error.message, code: 'Unknow' };
 		} else if (typeof error === 'string') {
-			return error;
+			return { message: error, code: 'Unknow' };
 		}
-		return 'Unknown error';
+		return { message: 'Unknown error', code: 'Unknow' };
 	}, [error]);
 
 	return (
@@ -22,12 +22,21 @@ const ErrorPage = () => {
 			id="error-page"
 			className="flex flex-col gap-8 justify-center items-center h-screen"
 		>
-			<h1 className="text-4xl font-bold">Oops!</h1>
-			<p>Sorry, an unexpected error has occurred.</p>
-			<p className="text-slate-400">
-				<i>{errorMessage}</i>
+			<h1 className="text-4xl font-bold text-dark-blue dark:text-white/90">
+				Oops!
+			</h1>
+			<p className="text-dark-blue dark:text-white/90">
+				Sorry, an unexpected error has occurred.
 			</p>
-			<Link to="/">BACK Home</Link>
+			<p className="text-dark-blue dark:text-salte-400/90 space-x-2">
+				<i className="text-dark-blue dark:text-white/90">{errorMessage.code}</i>
+				<i className="text-dark-blue dark:text-white/90">
+					{errorMessage.message}
+				</i>
+			</p>
+			<Link to="/" className="text-dark-blue dark:text-white/90">
+				BACK Home
+			</Link>
 		</div>
 	);
 };
