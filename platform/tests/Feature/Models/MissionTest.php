@@ -16,6 +16,7 @@ describe('Mission model', function () {
         $mission = Mission::factory()->create();
 
         expect($mission)->toBeInstanceOf(Mission::class)
+            ->and($mission->title)->toBeString()
             ->and($mission->start_date)->toBeInstanceOf(Carbon::class)
             ->and($mission->end_date)->toBeInstanceOf(Carbon::class);
     });
