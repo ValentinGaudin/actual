@@ -57,7 +57,6 @@
         "prettier/prettier": [
             "error",
             {
-                "SwitchCase": 1,
                 "printWidth": 80,
                 "endOfLine": "lf",
                 "singleQuote": true,
