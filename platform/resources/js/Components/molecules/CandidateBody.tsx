@@ -1,7 +1,6 @@
 import React from 'react';
 import { CandidateCell, CandidateDeleteButton } from '@/Components/atoms';
 import { Candidate } from '@/types/Candidate';
-import { NavLink } from 'react-router-dom';
 
 type Props = {
 	candidates: Candidate[];
