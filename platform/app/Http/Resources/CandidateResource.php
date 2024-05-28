@@ -27,9 +27,10 @@ final class CandidateResource extends JsonResource
             'first_name' => $this->first_name,
             'full_name' => $this->full_name,
             'email' => $this->email,
-            'birthday' => Carbon::parse($this->birthday)->format('Y-m-d'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d'),
-            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d'),
+            'birthday' => Carbon::parse($this->birthday)->format('d-M-Y'),
+            'missions' => MissionResource::collection($this->missions),
+            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/y H:i'),
+            'created_at' => Carbon::parse($this->created_at)->format('d/m/y H:i'),
         ];
     }
 }

@@ -2,7 +2,7 @@ import z from 'zod';
 
 import instance from './instance';
 
-import { CandidateSchema, PayloadDeleteCandidate } from '@/types/Candidate';
+import { CandidateSchema, PayloadCandidate } from '@/types/Candidate';
 import { ApiResponseSchema } from '@/types/Api';
 
 const getCandidates = async () => {
@@ -20,7 +20,20 @@ const getCandidates = async () => {
 	return Promise.reject({ data: 'Invalid data' });
 };
 
-const deleteCandidate = async (candidate: PayloadDeleteCandidate) => {
+const getCandidate = async (candidate: PayloadCandidate) => {
+	const response = await instance.get(`candidates/${candidate.id.toString()}`);
+
+	const data = await response.json();
+
+	const candidateResponse = z.object({ data: CandidateSchema }).safeParse(data);
+
+	if (candidateResponse.success) {
+		return Promise.resolve(candidateResponse.data);
+	}
+	return Promise.reject({ data: 'Invalid data' });
+};
+
+const deleteCandidate = async (candidate: PayloadCandidate) => {
 	const response = await instance.delete(
 		`candidates/${candidate.id.toString()}`
 	);
@@ -35,4 +48,4 @@ const deleteCandidate = async (candidate: PayloadDeleteCandidate) => {
 	return Promise.reject({ message: 'Invalid data' });
 };
 
-export { getCandidates, deleteCandidate };
+export { getCandidates, getCandidate, deleteCandidate };

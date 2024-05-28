@@ -32,6 +32,8 @@ final class Candidate extends Model
 
     protected $appends = ['full_name'];
 
+    protected $with = ['missions'];
+
     /**
      * @return Attribute<string, string>
      */
