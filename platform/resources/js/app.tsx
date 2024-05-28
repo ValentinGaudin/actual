@@ -5,9 +5,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import { RouterProvider } from 'react-router';
 
 import { ErrorPage } from '@/Components/atoms';
+import { CandidateCard } from '@/Components/molecules';
 import { Toaster } from '@/Components/organisms';
 import { BaseTemplate } from '@/Components/templates';
-import { Candidates } from '@/Pages/Candidates';
+import { Candidates } from '@/Pages';
 
 import { useThemeStore } from '@/hooks';
 
@@ -23,6 +24,10 @@ const App = () => {
 				{
 					index: true,
 					element: <Candidates />,
+				},
+				{
+					path: 'candidates/:candidateId',
+					element: <CandidateCard />,
 				},
 			],
 		},
