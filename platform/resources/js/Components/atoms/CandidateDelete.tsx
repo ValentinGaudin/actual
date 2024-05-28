@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { Candidate, PayloadDeleteCandidate } from '@/types/Candidate';
+import { Candidate, PayloadCandidate } from '@/types/Candidate';
 import { ApiError, ApiResponse } from '@/types/Api';
 
 import { Bin } from '@/Components/atoms/icons';
@@ -20,7 +20,7 @@ const CandidateDelete = ({ candidate }: Props) => {
 	const candidateMutation = useMutation<
 		ApiResponse,
 		ApiError,
-		PayloadDeleteCandidate
+		PayloadCandidate
 	>({
 		mutationFn: (payload) => deleteCandidate(payload),
 		onError: (error) => {

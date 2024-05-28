@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { AddCandidate, CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
+import {
+	AddCandidate,
+	CandidateHead,
+	SkeletonCandidateBody,
+} from '@/Components/atoms';
 import { CandidateBody } from '@/Components/molecules';
 
 import { getCandidates } from '@/services/candidate';
@@ -35,7 +39,10 @@ const Candidates = () => {
 				<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
 					<table className="min-w-full leading-normal">
 						<CandidateHead />
-						{data && <CandidateBody candidates={data} />}
+						{data &&
+							data.map((candidate, key) => (
+								<CandidateBody candidate={candidate} key={key} />
+							))}
 						{isLoading && <SkeletonCandidateBody />}
 					</table>
 				</div>
