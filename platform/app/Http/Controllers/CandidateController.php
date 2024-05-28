@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
+use App\Objects\Values\CandidateValuesObject;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -40,9 +41,13 @@ final class CandidateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCandidateRequest $request, Candidate $candidate): void
+    public function update(UpdateCandidateRequest $request, Candidate $candidate): JsonResponse
     {
-        //
+        $candidateObject = CandidateValuesObject::make($request);
+
+        $candidate->update($candidateObject->jsonSerialize());
+
+        return response()->json(['message' => 'Candidate Updated']);
     }
 
     /**
