@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react';
-import { CandidateCell, CandidateDeleteButton } from '@/Components/atoms';
+import React from 'react';
+import { CandidateCell } from '@/Components/atoms';
+import { CandidateButtons } from '@/Components/molecules';
+
 import { Candidate } from '@/types/Candidate';
 
 type Props = {
@@ -7,10 +9,6 @@ type Props = {
 };
 
 const CandidateBody = ({ candidate }: Props) => {
-	const counterMission = useMemo(() => {
-		return candidate.missions.length || 0;
-	}, [candidate]);
-
 	return (
 		<tbody>
 			<tr>
@@ -19,7 +17,7 @@ const CandidateBody = ({ candidate }: Props) => {
 					candidateId={candidate.id}
 				/>
 				<CandidateCell
-					candidateKey={counterMission.toString()}
+					candidateKey={candidate.email}
 					candidateId={candidate.id}
 				/>
 				<CandidateCell
@@ -30,7 +28,7 @@ const CandidateBody = ({ candidate }: Props) => {
 					candidateKey={candidate.created_at}
 					candidateId={candidate.id}
 				/>
-				<CandidateDeleteButton candidate={candidate} />
+				<CandidateButtons candidate={candidate} />
 			</tr>
 		</tbody>
 	);

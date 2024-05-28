@@ -8,7 +8,7 @@ import {
 } from '@/Components/atoms';
 import { CandidateBody } from '@/Components/molecules';
 
-import { getCandidates } from '@/services/candidate';
+import { getCandidates } from '@/services/http/candidate';
 
 import { useToasterStore } from '@/hooks';
 

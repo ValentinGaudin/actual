@@ -1,4 +1,4 @@
-import z, { unknown } from 'zod';
+import z from 'zod';
 
 import instance from './instance';
 
@@ -7,8 +7,8 @@ import {
 	PayloadCandidate,
 	UpdatePayloadCandidate,
 } from '@/types/Candidate';
-import { ApiErrorSchema, ApiResponseSchema } from '@/types/Api';
-import { KyResponse } from 'ky';
+
+import { ApiResponseSchema } from '@/types/Api';
 
 const getCandidates = async () => {
 	const response = await instance.get(`candidates`);
@@ -53,10 +53,20 @@ const deleteCandidate = async (candidate: PayloadCandidate) => {
 	return Promise.reject({ message: 'Invalid data' });
 };
 
-const updateCandidate = async (candidate: UpdatePayloadCandidate) => {
-	const response = await instance.put(`candidates/${candidate.id}`);
+const updateCandidate = async (payload: UpdatePayloadCandidate) => {
+	const kyResponse = await instance.put(`candidates/${payload.id}`, {
+		json: payload,
+	});
 
-	return response.json();
+	const data = await kyResponse.json();
+
+	const updateCandidateResponse = ApiResponseSchema.safeParse(data);
+
+	if (updateCandidateResponse.success) {
+		return Promise.resolve(updateCandidateResponse.data);
+	}
+
+	return Promise.reject({ message: 'Invalid data' });
 };
 
 export { getCandidates, getCandidate, deleteCandidate, updateCandidate };

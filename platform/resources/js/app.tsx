@@ -5,7 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { RouterProvider } from 'react-router';
 
 import { ErrorPage } from '@/Components/atoms';
-import { CandidateCard } from '@/Components/molecules';
+import { CandidateCard, CandidateForm } from '@/Components/molecules';
 import { Toaster } from '@/Components/organisms';
 import { BaseTemplate } from '@/Components/templates';
 import { Candidates } from '@/Pages';
@@ -28,6 +28,10 @@ const App = () => {
 				{
 					path: 'candidates/:candidateId',
 					element: <CandidateCard />,
+				},
+				{
+					path: 'candidates/:candidateId/edit',
+					element: <CandidateForm />,
 				},
 			],
 		},
