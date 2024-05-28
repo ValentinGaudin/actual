@@ -3,12 +3,13 @@
 namespace App\Objects\Values;
 
 use App\Http\Requests\UpdateCandidateRequest;
+use Carbon\Carbon;
 use JsonSerializable;
 use Override;
 
 class CandidateValuesObject  implements JsonSerializable
 {
-    public function __construct(public string $firstName, public string $lastName, public string $email)
+    public function __construct(public string $firstName, public string $lastName, public string $email, public string $birthday)
     {
     }
 
@@ -23,6 +24,9 @@ class CandidateValuesObject  implements JsonSerializable
             firstName: $request->string('first_name')->toString(),
             lastName: $request->string('last_name')->toString(),
             email: $request->string('email')->toString(),
+            birthday: new Carbon(
+                time: $request->string('birthday')->toString()
+            ),
         );
     }
 
@@ -36,6 +40,7 @@ class CandidateValuesObject  implements JsonSerializable
             'first_name' => $this->getFirstName(),
             'last_name' => $this->getLastName(),
             'email' => $this->getEmail(),
+            'birthday' => $this->getBirthday()
         ];
     }
 
@@ -52,5 +57,10 @@ class CandidateValuesObject  implements JsonSerializable
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getBirthday(): string
+    {
+        return $this->birthday;
     }
 }
