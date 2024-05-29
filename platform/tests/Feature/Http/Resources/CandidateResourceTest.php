@@ -15,8 +15,6 @@ describe('Candidates Resources', function () {
             'title' => 'Président',
             'start_date' => '1990-01-01',
             'end_date' => '2100-01-01',
-            'created_at' => '2023-05-15 12:00:00',
-            'updated_at' => '2023-05-15 12:00:00',
         ]);
 
         $candidate = Candidate::factory()->make([
@@ -25,8 +23,6 @@ describe('Candidates Resources', function () {
             'last_name' => 'Doe',
             'email' => 'john.doe@example.com',
             'birthday' => '1990-01-01',
-            'created_at' => '2023-05-15 12:00',
-            'updated_at' => '2023-05-15 12:00',
         ]);
 
         $candidate->missions()->sync($mission);
@@ -41,8 +37,6 @@ describe('Candidates Resources', function () {
             'full_name' => 'Doe John',
             'email' => 'john.doe@example.com',
             'birthday' => '1990-01-01',
-            'created_at' => '15 mai 2023 12:00',
-            'updated_at' => '15 mai 2023 12:00',
             'missions' => MissionResource::collection($candidate->missions),
         ]);
     });
