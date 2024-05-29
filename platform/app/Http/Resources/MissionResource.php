@@ -24,10 +24,10 @@ final class MissionResource extends JsonResource
         return [
             'id' => $this->getKey(),
             'title' => $this->title,
-            'start_date' => Carbon::parse($this->start_date)->format('Y-m-d'),
-            'end_date' => Carbon::parse($this->end_date)->format('Y-m-d'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d'),
-            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d'),
+            'start_date' => $this->start_date->format('Y-m-d'),
+            'end_date' => $this->end_date->format('Y-m-d'),
+            'updated_at' => $this->updated_at->format('Y-m-d'),
+            'created_at' => $this->created_at->format('Y-m-d'),
         ];
     }
 }

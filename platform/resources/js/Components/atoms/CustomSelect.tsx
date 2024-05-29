@@ -56,7 +56,7 @@ const MultiSelect = ({ candidate, field, form }: Props) => {
 			return data
 				.map((mission) => ({
 					value: mission.id,
-					label: mission.title,
+					label: `${mission.start_date} - ${mission.end_date} ${mission.title}`,
 				}))
 				.sort((a, b) => a.value - b.value);
 		}
@@ -71,7 +71,7 @@ const MultiSelect = ({ candidate, field, form }: Props) => {
 		return getAvailableMissions(data, currentSelectedMissions)
 			.map((mission) => ({
 				value: mission.id,
-				label: mission.title,
+				label: `${mission.start_date} - ${mission.end_date} ${mission.title}`,
 			}))
 			.sort((a, b) => a.value - b.value);
 	}, [data, candidate, selectedOptions]);
@@ -87,7 +87,7 @@ const MultiSelect = ({ candidate, field, form }: Props) => {
 			.filter((mission) => candidateMissionIds.has(mission.id))
 			.map((mission) => ({
 				value: mission.id,
-				label: mission.title,
+				label: `${mission.start_date} - ${mission.end_date} ${mission.title}`,
 			}));
 
 		setSelectedOptions(defaultMission);

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Candidate, PayloadCandidate } from '@/types/Candidate';
@@ -17,6 +19,8 @@ const CandidateDelete = ({ candidate }: Props) => {
 	const showToast = useToasterStore((state) => state.showToast);
 
 	const queryClient = useQueryClient();
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	const candidateMutation = useMutation<
 		ApiResponse,
@@ -38,6 +42,9 @@ const CandidateDelete = ({ candidate }: Props) => {
 					: 'Successfully deleted candidate',
 			});
 			await queryClient.invalidateQueries({ queryKey: ['candidates'] });
+			if ('/' !== location.pathname) {
+				navigate(`/`);
+			}
 		},
 	});
 

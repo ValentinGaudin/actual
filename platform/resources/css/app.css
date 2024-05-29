@@ -87,7 +87,10 @@
 .react-select__multi-value__label {
   @apply dark:text-white text-black dark:border-white border-black;
 }
-
 .react-select__option {
   @apply dark:bg-black bg-white hover:dark:bg-white/70 hover:dark:text-black;
+}
+
+.rbc-toolbar {
+  @apply flex-row !important;
 }

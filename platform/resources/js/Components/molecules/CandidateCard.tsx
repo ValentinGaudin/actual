@@ -1,13 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
+import startOfWeek from 'date-fns/startOfWeek';
+import getDay from 'date-fns/getDay';
+import enUS from 'date-fns/locale/en-US';
 
 import { getCandidate } from '@/services/http/candidate';
 
 import { useToasterStore } from '@/hooks';
 
-import { CandidateEdit, SkeletonCandidateCard } from '@/Components/atoms';
+import {
+	CandidateDelete,
+	CandidateEdit,
+	SkeletonCandidateCard,
+} from '@/Components/atoms';
+
 import {
 	Card,
 	CardContent,
@@ -25,12 +38,34 @@ const CandidateCard = () => {
 	const navigate = useNavigate();
 	const showToast = useToasterStore((state) => state.showToast);
 
+	const locales = {
+		'en-US': enUS,
+	};
+	const localizer = dateFnsLocalizer({
+		format,
+		parse,
+		startOfWeek,
+		getDay,
+		locales,
+	});
+
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ['candidate', candidateId],
 		queryFn: () => getCandidate({ id: Number(candidateId) }),
 		select: (responseData) => responseData.data,
 		enabled: !!candidateId,
 	});
+
+	const candidateMission = useMemo(() => {
+		return (
+			data &&
+			data.missions.map((mission) => ({
+				title: `${mission.start_date} - ${mission.end_date} ${mission.title}`,
+				start: new Date(mission.start_date),
+				end: new Date(mission.end_date),
+			}))
+		);
+	}, [data]);
 
 	useEffect(() => {
 		if (!candidateId) {
@@ -64,9 +99,25 @@ const CandidateCard = () => {
 						<CardDescription className="flex items-center">
 							{new Date(data.birthday).toLocaleDateString().split('T')[0]}
 						</CardDescription>
-						<CandidateEdit candidate={data} />
+						<div className="flex flex-row space-x-2">
+							<CandidateEdit candidate={data} />
+							<CandidateDelete candidate={data} />
+						</div>
 					</CardHeader>
-					<CardContent>Missions :</CardContent>
+					<CardContent>
+						<h4 className="text-3xl p-4">Missions :</h4>
+						<Calendar
+							localizer={localizer}
+							defaultDate={new Date()}
+							defaultView="month"
+							startAccessor="start"
+							endAccessor="end"
+							events={candidateMission}
+							style={{ height: 500 }}
+							views={['month', 'week']}
+							selectable={false}
+						/>
+					</CardContent>
 				</Card>
 			)}
 		</div>
