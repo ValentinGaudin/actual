@@ -28,7 +28,7 @@ final class Candidate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'birthday'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'birthday', 'updated_at', 'created_at'];
 
     protected $appends = ['full_name'];
 

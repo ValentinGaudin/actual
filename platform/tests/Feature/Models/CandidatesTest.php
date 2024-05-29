@@ -12,7 +12,7 @@ describe('Candidate model', function () {
         $candidate = new Candidate;
 
         expect($candidate->getFillable())
-            ->toEqual(['first_name', 'last_name', 'email', 'birthday']);
+            ->toEqual(['first_name', 'last_name', 'email', 'birthday', 'updated_at', 'created_at']);
     });
 
     it('casts properties correctly', function () {
