@@ -28,8 +28,8 @@ final class CandidateResource extends JsonResource
             'email' => $this->email,
             'birthday' => $this->birthday->format('Y-m-d'),
             'missions' => MissionResource::collection($this->missions),
-            'updated_at' => $this->updated_at->format('Y-m-d'),
-            'created_at' => $this->created_at->format('Y-m-d'),
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ];
     }
 }
