@@ -6,6 +6,7 @@ use App\Http\Resources\CandidateResource;
 use App\Http\Resources\MissionResource;
 use App\Models\Candidate;
 use App\Models\Mission;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 describe('Candidates Resources', function () {
@@ -15,6 +16,8 @@ describe('Candidates Resources', function () {
             'title' => 'Président',
             'start_date' => '1990-01-01',
             'end_date' => '2100-01-01',
+            'created_at' => Carbon::create(2024, 12, 01),
+            'updated_at' => Carbon::create(2024, 12, 01),
         ]);
 
         $candidate = Candidate::factory()->make([
@@ -23,6 +26,8 @@ describe('Candidates Resources', function () {
             'last_name' => 'Doe',
             'email' => 'john.doe@example.com',
             'birthday' => '1990-01-01',
+            'created_at' => Carbon::create(2024, 12, 01),
+            'updated_at' => Carbon::create(2024, 12, 01),
         ]);
 
         $candidate->missions()->sync($mission);
@@ -37,6 +42,8 @@ describe('Candidates Resources', function () {
             'full_name' => 'Doe John',
             'email' => 'john.doe@example.com',
             'birthday' => '1990-01-01',
+            'created_at' => Carbon::create(2024, 12, 01),
+            'updated_at' => Carbon::create(2024, 12, 01),
             'missions' => MissionResource::collection($candidate->missions),
         ]);
     });
