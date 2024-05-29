@@ -29,7 +29,7 @@ final class CandidateResource extends JsonResource
             'birthday' => $this->birthday->format('Y-m-d'),
             'missions' => MissionResource::collection($this->missions),
             'updated_at' => $this->updated_at->format('Y-m-d'),
-            'created_at' => $this->created_at->isoFormat('Y-m-d'),
+            'created_at' => $this->created_at->format('Y-m-d'),
         ];
     }
 }
