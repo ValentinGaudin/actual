@@ -29,8 +29,8 @@ const Candidates = () => {
 	return (
 		<>
 			<div className="overflow-x-auto w-full mt-4">
-				<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
-					<table className="min-w-full leading-normal">
+				<div className="inline-block min-w-full border border-gray-200 rounded-lg shadow overflow-y-scroll w-full">
+					<table className="min-w-full leading-normal ">
 						<CandidateHead />
 						{data &&
 							data.map((candidate, key) => (

@@ -7,7 +7,14 @@ import { getCandidate } from '@/services/http/candidate';
 
 import { useToasterStore } from '@/hooks';
 
-import { SkeletonCandidateCard } from '@/Components/atoms';
+import { CandidateEdit, SkeletonCandidateCard } from '@/Components/atoms';
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/shadcn/ui/card';
 
 type Params = {
 	candidateId: string;
@@ -44,30 +51,23 @@ const CandidateCard = () => {
 		<div className="w-full h-full mt-16">
 			{isLoading && isError && <SkeletonCandidateCard />}
 			{data && (
-				<div className="bg-white relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
-					<div className="flex flex-row justify-around items-center p-5 ">
-						<div className="flex justify-center">
-							<img
-								src="https://avatars0.githubusercontent.com/u/35900628?v=4"
-								alt=""
-								className="rounded-full mx-auto -top-20 w-16 h-16 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
-							/>
-						</div>
-						<h1 className="font-bold text-center text-3xl text-gray-900">
+				<Card className="dark:bg-black/40">
+					<CardHeader className="flex flex-row justify-between items-center w-full">
+						<img
+							src="https://avatars0.githubusercontent.com/u/35900628?v=4"
+							alt=""
+							className="rounded-full w-16 h-16 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+						/>
+						<CardTitle className="font-bold text-3xl">
 							{data.full_name}
-						</h1>
-						<p className="text-center text-sm text-gray-400 font-medium">
+						</CardTitle>
+						<CardDescription className="flex items-center">
 							{new Date(data.birthday).toLocaleDateString().split('T')[0]}
-						</p>
-					</div>
-
-					<div className="w-full mt-4">
-						<h3 className="font-medium text-gray-900 text-left px-6">
-							Missions :
-						</h3>
-						<div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm"></div>
-					</div>
-				</div>
+						</CardDescription>
+						<CandidateEdit candidate={data} />
+					</CardHeader>
+					<CardContent>Missions :</CardContent>
+				</Card>
 			)}
 		</div>
 	);

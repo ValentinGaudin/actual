@@ -1,10 +1,13 @@
 import React, { Suspense, useMemo } from 'react';
+import { HTTPError } from 'ky';
 import { useParams } from 'react-router';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FormikHelpers } from 'formik/dist/types';
 import { FieldProps } from 'formik/dist/Field';
 import { useQuery } from '@tanstack/react-query';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+
+import { Button } from '@/shadcn/ui/button';
 
 import {
 	CandidateUpdatePayloadSchema,
@@ -18,7 +21,6 @@ import { getCandidate, updateCandidate } from '@/services/http/candidate';
 import { useToasterStore } from '@/hooks';
 
 import { CandidateFormInput, CustomSelect } from '@/Components/atoms';
-import { HTTPError } from 'ky';
 
 type Params = {
 	candidateId: string;
@@ -77,6 +79,7 @@ const CandidateCardForm = () => {
 			}
 		}
 	};
+
 	return (
 		!isLoading &&
 		!isError &&
@@ -96,7 +99,7 @@ const CandidateCardForm = () => {
 						)}
 					>
 						{({ errors, touched }) => (
-							<Form className="flex flex-col items-center space-y-6 w-3/4 dark:bg-gray-800/90 rounded-lg px-2 py-5">
+							<Form className="flex flex-col items-center space-y-6 w-3/4 lg:w-3/4 dark:bg-gray-900/40 bg-zinc-50 rounded-xl backdrop-blur drop-shadow px-2 py-5">
 								<CandidateFormInput
 									id="first_name"
 									placeholder="John"
@@ -104,6 +107,7 @@ const CandidateCardForm = () => {
 									title="Prénom"
 									touched={touched}
 									errors={errors}
+									defaultValue={initialValue.first_name}
 								/>
 
 								<CandidateFormInput
@@ -113,6 +117,7 @@ const CandidateCardForm = () => {
 									title="Nom"
 									touched={touched}
 									errors={errors}
+									defaultValue={initialValue.last_name}
 								/>
 
 								<CandidateFormInput
@@ -122,6 +127,7 @@ const CandidateCardForm = () => {
 									title="Email"
 									touched={touched}
 									errors={errors}
+									defaultValue={initialValue.email}
 								/>
 
 								<CandidateFormInput
@@ -130,6 +136,7 @@ const CandidateCardForm = () => {
 									title="Date de naissance"
 									touched={touched}
 									errors={errors}
+									defaultValue={initialValue.birthday}
 								/>
 
 								<div className="flex flex-col md:flex-row items-center md:justify-between justify-center md:w-3/5">
@@ -163,15 +170,11 @@ const CandidateCardForm = () => {
 										/>
 									) : null}
 								</div>
-
-								<button className="flex mx-auto w-2/3 md:w-3/5 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-									Enregistrer
-								</button>
+								<Button>Enregistrer</Button>
 							</Form>
 						)}
 					</Formik>
 				</Suspense>
-				) );
 			</>
 		)
 	);

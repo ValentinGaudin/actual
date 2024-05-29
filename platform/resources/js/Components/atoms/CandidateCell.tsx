@@ -17,7 +17,7 @@ const CandidateCell = ({ candidateKey, candidateId }: Props) => {
 	return (
 		<td
 			onClick={() => goCandidateShow(candidateId)}
-			className="px-5 py-5 border-b border-gray-200 dark:bg-gray-700/80 bg-white text-sm cursor-pointer"
+			className="px-5 py-5 border-b border-gray-500 dark:bg-black/60 bg-white text-sm cursor-pointer"
 		>
 			<div className="flex items-center">
 				<div className="ml-3">

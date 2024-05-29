@@ -9,7 +9,7 @@ type Props = {
 
 const CandidateButtons = ({ candidate }: Props) => {
 	return (
-		<td className="px-5 py-5 border-b border-gray-200 dark:bg-gray-700/80 bg-white text-sm">
+		<td className="px-5 py-5 border-b border-gray-500 dark:bg-black/80 bg-white text-sm">
 			<div className="flex flex-row">
 				<CandidateEdit candidate={candidate} />
 				<CandidateDelete candidate={candidate} />

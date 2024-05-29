@@ -46,7 +46,7 @@
             "version": "18.x"
         }
     },
-    "ignorePatterns": ["coverage/**/*.js"],
+    "ignorePatterns": ["coverage/**/*.js", "resources/js/shadcn/*"],
     "rules": {
         "@typescript-eslint/no-unsafe-return": "off",
         "import/no-named-as-default": "off",
