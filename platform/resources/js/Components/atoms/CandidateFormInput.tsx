@@ -4,6 +4,7 @@ import { FormikErrors, FormikTouched } from 'formik/dist/types';
 
 import { UpdatePayloadCandidate } from '@/types/Candidate';
 import { Input } from '@/shadcn/ui/input';
+import { FieldProps } from 'formik/dist/Field';
 
 type Props = {
 	errors: FormikErrors<UpdatePayloadCandidate>;
@@ -45,7 +46,7 @@ const CandidateFormInput = ({
 					/>
 				) : (
 					<Field name={id}>
-						{() => {
+						{(props: FieldProps) => {
 							return (
 								<Input
 									id={id}
@@ -53,6 +54,12 @@ const CandidateFormInput = ({
 									type={type}
 									placeholder={placeholder}
 									defaultValue={defaultValue}
+									onChange={(event) =>
+										void props.form.setFieldValue(
+											props.field.name,
+											event.target.value
+										)
+									}
 								/>
 							);
 						}}

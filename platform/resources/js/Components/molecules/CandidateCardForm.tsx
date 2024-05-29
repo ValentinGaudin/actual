@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FormikHelpers } from 'formik/dist/types';
 import { FieldProps } from 'formik/dist/Field';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Button } from '@/shadcn/ui/button';
@@ -27,12 +27,13 @@ type Params = {
 };
 
 function Loading() {
-	return <h2>🌀 Chargement...</h2>;
+	return <h2>Chargement...</h2>;
 }
 
 const CandidateCardForm = () => {
 	const { candidateId } = useParams<keyof Params>() as Params;
 	const showToast = useToasterStore((state) => state.showToast);
+	const queryClient = useQueryClient();
 
 	const { isLoading, data, isError } = useQuery({
 		queryKey: ['candidate', candidateId],
@@ -69,6 +70,8 @@ const CandidateCardForm = () => {
 				type: 'success',
 				message: response.message ?? 'Successfully Updated',
 			});
+
+			await queryClient.invalidateQueries({ queryKey: ['candidate'] });
 		} catch (err: unknown) {
 			if (err instanceof HTTPError && err.response?.status === 422) {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
