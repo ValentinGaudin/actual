@@ -45,6 +45,10 @@ final class CandidateController extends Controller
     {
         $candidateObject = CandidateValuesObject::make($request);
 
+        $missions = $candidateObject->getMissions();
+
+        $candidate->missions()->sync($missions);
+
         $candidate->update($candidateObject->jsonSerialize());
 
         return response()->json(['message' => 'Candidate Updated']);

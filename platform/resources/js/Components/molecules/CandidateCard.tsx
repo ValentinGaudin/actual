@@ -57,7 +57,7 @@ const CandidateCard = () => {
 							{data.full_name}
 						</h1>
 						<p className="text-center text-sm text-gray-400 font-medium">
-							{data.birthday}
+							{new Date(data.birthday).toLocaleDateString().split('T')[0]}
 						</p>
 					</div>
 

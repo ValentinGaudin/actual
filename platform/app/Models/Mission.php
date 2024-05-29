@@ -24,6 +24,14 @@ final class Mission extends Model
 
     protected $fillable = ['title', 'start_date', 'end_date'];
 
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var string[]
+     */
+    protected $touches = ['candidates'];
+
     /**
      * @return BelongsToMany<Candidate>
      */

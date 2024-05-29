@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Resources;
 
 use App\Models\Candidate;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -27,7 +26,7 @@ final class CandidateResource extends JsonResource
             'first_name' => $this->first_name,
             'full_name' => $this->full_name,
             'email' => $this->email,
-            'birthday' => $this->birthday->isoFormat('LL'),
+            'birthday' => $this->birthday->format('Y-m-d'),
             'missions' => MissionResource::collection($this->missions),
             'updated_at' => $this->updated_at->isoFormat('LLL'),
             'created_at' => $this->created_at->isoFormat('LLL'),

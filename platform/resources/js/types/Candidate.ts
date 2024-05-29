@@ -1,6 +1,7 @@
 import z from 'zod';
 
-import { MissionSchema } from './Mission';
+import { MissionSchema } from '@/types/Mission';
+import { OptionSchema } from '@/types/Option';
 
 export const CandidateSchema = z.object({
 	id: z.number(),
@@ -32,7 +33,7 @@ export const CandidateUpdatePayloadSchema = z.object({
 		.max(20, 'Username is too long'),
 	email: z.string().email('Invalid email address').min(5, 'Email is too short'),
 	birthday: z.string(),
-	missions: z.array(z.number()),
+	missions: OptionSchema.array(),
 });
 
 export type UpdatePayloadCandidate = z.infer<

@@ -10,7 +10,3 @@ export const MissionSchema = z.object({
 });
 
 export type Mission = z.infer<typeof MissionSchema>;
-
-export const CandidateMissionSchema = z.object({
-	id: z.number(),
-});
