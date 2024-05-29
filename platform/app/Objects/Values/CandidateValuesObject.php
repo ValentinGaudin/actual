@@ -7,18 +7,20 @@ namespace App\Objects\Values;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Models\Mission;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection as SupportCollection;
 use JsonSerializable;
 use Override;
 
 final class CandidateValuesObject implements JsonSerializable
 {
     /**
-     * @param  Collection<int, array{value: int, label: string}>  $missions
+     * @param  SupportCollection<int, array{value: int, label: string}>  $options
+     * @param  array<int>|EloquentCollection<int, Mission>  $missions
      */
-    public function __construct(public string $firstName, public string $lastName, public string $email, public Carbon $birthday, public Collection $missions)
+    public function __construct(public string $firstName, public string $lastName, public string $email, public Carbon $birthday, public SupportCollection $options, public array|EloquentCollection $missions)
     {
-        $this->missions = $this->constructMissions();
+        $this->constructMissions();
     }
 
     public static function make(UpdateCandidateRequest $request): self
@@ -30,7 +32,8 @@ final class CandidateValuesObject implements JsonSerializable
             birthday: new Carbon(
                 time: $request->string('birthday')->toString()
             ),
-            missions: $request->collect('missions')
+            options: $request->collect('options'),
+            missions: []
         );
     }
 
@@ -45,15 +48,14 @@ final class CandidateValuesObject implements JsonSerializable
             'last_name' => $this->getLastName(),
             'email' => $this->getEmail(),
             'birthday' => $this->getBirthday(),
-            'missions' => $this->getMissions(),
         ];
     }
 
-    public function constructMissions()
+    public function constructMissions(): void
     {
-        return Mission::query()->findMany(
-            $this->getMissions()->map(function ($mission) {
-                return $mission['value'];
+        $this->missions = Mission::query()->findMany(
+            $this->getOptions()->map(function ($option) {
+                return $option['value'];
             }));
     }
 
@@ -78,9 +80,17 @@ final class CandidateValuesObject implements JsonSerializable
     }
 
     /**
-     * @return Collection<int, array{value: int, label: string}>
+     * @return SupportCollection<int, array{value: int, label: string}>
      */
-    public function getMissions(): Collection
+    public function getOptions(): SupportCollection
+    {
+        return $this->options;
+    }
+
+    /**
+     * @return array<int>|EloquentCollection<int, Mission>
+     */
+    public function getMissions(): array|EloquentCollection
     {
         return $this->missions;
     }

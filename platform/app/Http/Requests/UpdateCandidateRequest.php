@@ -28,7 +28,7 @@ final class UpdateCandidateRequest extends FormRequest
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email'],
             'birthday' => ['required', 'string'],
-            'missions' => ['required', 'array'],
+            'options' => ['array'],
         ];
     }
 }

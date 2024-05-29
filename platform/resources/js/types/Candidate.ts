@@ -33,7 +33,7 @@ export const CandidateUpdatePayloadSchema = z.object({
 		.max(20, 'Username is too long'),
 	email: z.string().email('Invalid email address').min(5, 'Email is too short'),
 	birthday: z.string(),
-	missions: OptionSchema.array(),
+	options: OptionSchema.array(),
 });
 
 export type UpdatePayloadCandidate = z.infer<

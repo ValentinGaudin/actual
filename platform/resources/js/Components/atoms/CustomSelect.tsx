@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Select from 'react-select';
 import { useQuery } from '@tanstack/react-query';
 

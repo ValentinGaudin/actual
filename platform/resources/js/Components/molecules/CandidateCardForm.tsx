@@ -38,7 +38,7 @@ const CandidateCardForm = () => {
 		enabled: !!candidateId,
 	});
 
-	const initialMissions = useMemo(() => {
+	const initialOptions = useMemo(() => {
 		const parsedData = MissionSchema.array().safeParse(data?.missions);
 
 		return parsedData.data?.map((mission) => ({
@@ -53,7 +53,7 @@ const CandidateCardForm = () => {
 		last_name: data?.last_name ?? '',
 		email: data?.email ?? '',
 		birthday: data?.birthday ?? '',
-		missions: initialMissions ?? [],
+		options: initialOptions ?? [],
 	};
 
 	const handleSubmit = async (
@@ -134,7 +134,7 @@ const CandidateCardForm = () => {
 								</label>
 							</div>
 							{data && (
-								<Field name={'missions'}>
+								<Field name={'options'}>
 									{(props: FieldProps) => {
 										return (
 											<CustomSelect
@@ -147,9 +147,9 @@ const CandidateCardForm = () => {
 								</Field>
 							)}
 
-							{errors.missions && touched.missions ? (
+							{errors.options && touched.options ? (
 								<ErrorMessage
-									name="missions"
+									name="options"
 									className="text-red-500 dark:text-red-700"
 								/>
 							) : null}
