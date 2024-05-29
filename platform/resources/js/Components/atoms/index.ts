@@ -1,4 +1,3 @@
-export { default as AddCandidate } from './AddCandidate';
 export { default as CandidateCell } from './CandidateCell';
 export { default as CandidateDelete } from './CandidateDelete';
 export { default as CandidateEdit } from './CandidateEdit';

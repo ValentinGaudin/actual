@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import {
-	AddCandidate,
-	CandidateHead,
-	SkeletonCandidateBody,
-} from '@/Components/atoms';
+import { CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
 import { CandidateBody } from '@/Components/molecules';
 
 import { getCandidates } from '@/services/http/candidate';
@@ -32,9 +28,6 @@ const Candidates = () => {
 
 	return (
 		<>
-			<div className="self-end mr-1">
-				<AddCandidate />
-			</div>
 			<div className="overflow-x-auto w-full mt-4">
 				<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
 					<table className="min-w-full leading-normal">
