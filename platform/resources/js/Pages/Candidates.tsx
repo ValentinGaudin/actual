@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { getCandidates } from '@/services/candidate';
-import { AddCandidate, CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
+import { CandidateHead, SkeletonCandidateBody } from '@/Components/atoms';
 import { CandidateBody } from '@/Components/molecules';
+
+import { getCandidates } from '@/services/http/candidate';
+
 import { useToasterStore } from '@/hooks';
 
-const Index = () => {
+const Candidates = () => {
 	const showToast = useToasterStore((state) => state.showToast);
 
 	const { isLoading, data, isError, error } = useQuery({
@@ -26,14 +28,14 @@ const Index = () => {
 
 	return (
 		<>
-			<div className="self-end mr-1">
-				<AddCandidate />
-			</div>
 			<div className="overflow-x-auto w-full mt-4">
-				<div className="inline-block min-w-full shadow rounded-lg overflow-y-scroll w-full">
-					<table className="min-w-full leading-normal">
+				<div className="inline-block min-w-full border border-gray-200 rounded-lg shadow overflow-y-scroll w-full">
+					<table className="min-w-full leading-normal ">
 						<CandidateHead />
-						{data && <CandidateBody candidates={data} />}
+						{data &&
+							data.map((candidate, key) => (
+								<CandidateBody candidate={candidate} key={key} />
+							))}
 						{isLoading && <SkeletonCandidateBody />}
 					</table>
 				</div>
@@ -42,4 +44,4 @@ const Index = () => {
 	);
 };
 
-export default Index;
+export default Candidates;

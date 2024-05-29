@@ -1,11 +1,12 @@
 import React from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { Candidate, PayloadDeleteCandidate } from '@/types/Candidate';
+import { Candidate, PayloadCandidate } from '@/types/Candidate';
 import { ApiError, ApiResponse } from '@/types/Api';
 
 import { Bin } from '@/Components/atoms/icons';
-import { deleteCandidate } from '@/services/candidate';
+
+import { deleteCandidate } from '@/services/http/candidate';
 import { useToasterStore } from '@/hooks';
 
 type Props = {
@@ -20,7 +21,7 @@ const CandidateDelete = ({ candidate }: Props) => {
 	const candidateMutation = useMutation<
 		ApiResponse,
 		ApiError,
-		PayloadDeleteCandidate
+		PayloadCandidate
 	>({
 		mutationFn: (payload) => deleteCandidate(payload),
 		onError: (error) => {
@@ -41,18 +42,16 @@ const CandidateDelete = ({ candidate }: Props) => {
 	});
 
 	return (
-		<td className="px-5 py-5 border-b border-gray-200 dark:bg-gray-700/80 bg-white text-sm">
-			<div className="flex items-center">
-				<div className="ml-3">
-					<button
-						onClick={() => candidateMutation.mutate({ id: candidate.id })}
-						className="flex-no-shrink bg-red-500/80 hover:bg-red-500 p-1 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500/80 hover:border-red-500 text-white rounded-lg"
-					>
-						<Bin />
-					</button>
-				</div>
+		<div className="flex items-center">
+			<div className="ml-3">
+				<button
+					onClick={() => candidateMutation.mutate({ id: candidate.id })}
+					className="flex-no-shrink bg-red-500/80 hover:bg-red-500 p-1 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500/80 hover:border-red-500 text-white rounded-lg"
+				>
+					<Bin />
+				</button>
 			</div>
-		</td>
+		</div>
 	);
 };
 

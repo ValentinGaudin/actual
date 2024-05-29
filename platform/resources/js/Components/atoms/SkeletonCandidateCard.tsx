@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SkeletonCandidateBody = () => {
+const SkeletonCandidateCard = () => {
 	return (
 		<tbody>
 			<tr>
@@ -44,4 +44,4 @@ const SkeletonCandidateBody = () => {
 	);
 };
 
-export default SkeletonCandidateBody;
+export default SkeletonCandidateCard;

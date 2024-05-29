@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Observers\CandidateObserver;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Carbon;
 
 /**
  * @property string $last_name
@@ -28,9 +28,11 @@ final class Candidate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'birthday'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'birthday', 'updated_at', 'created_at'];
 
     protected $appends = ['full_name'];
+
+    protected $with = ['missions'];
 
     /**
      * @return Attribute<string, string>

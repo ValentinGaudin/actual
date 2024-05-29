@@ -22,7 +22,14 @@ final class Mission extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'start_date', 'end_date'];
+    protected $fillable = ['title', 'start_date', 'end_date', 'updated_at', 'created_at'];
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var string[]
+     */
+    protected $touches = ['candidates'];
 
     /**
      * @return BelongsToMany<Candidate>

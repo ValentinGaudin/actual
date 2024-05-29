@@ -9,13 +9,14 @@ describe('Mission model', function () {
     it('has correct fillable properties', function () {
         $mission = new Mission;
         expect($mission->getFillable())
-            ->toEqual(['title', 'start_date', 'end_date']);
+            ->toEqual(['title', 'start_date', 'end_date', 'updated_at', 'created_at']);
     });
 
     it('casts properties correctly', function () {
         $mission = Mission::factory()->create();
 
         expect($mission)->toBeInstanceOf(Mission::class)
+            ->and($mission->title)->toBeString()
             ->and($mission->start_date)->toBeInstanceOf(Carbon::class)
             ->and($mission->end_date)->toBeInstanceOf(Carbon::class);
     });

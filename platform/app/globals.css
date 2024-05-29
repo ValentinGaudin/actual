@@ -74,20 +74,3 @@
       @apply bg-background text-foreground;
     }
   }
-
-.react-select__control {
-  @apply w-full dark:bg-black bg-white dark:text-white text-black;
-}
-.react-select__menu {
-  @apply dark:bg-black bg-white dark:text-white text-black;
-}
-.react-select__multi-value {
-  @apply dark:bg-black bg-white;
-}
-.react-select__multi-value__label {
-  @apply dark:text-white text-black dark:border-white border-black;
-}
-
-.react-select__option {
-  @apply dark:bg-black bg-white hover:dark:bg-white/70 hover:dark:text-black;
-}

@@ -1,23 +1,35 @@
 import React from 'react';
-import { CandidateCell, CandidateDeleteButton } from '@/Components/atoms';
+import { CandidateCell } from '@/Components/atoms';
+import { CandidateButtons } from '@/Components/molecules';
+
 import { Candidate } from '@/types/Candidate';
-import { NavLink } from 'react-router-dom';
 
 type Props = {
-	candidates: Candidate[];
+	candidate: Candidate;
 };
-const CandidateBody = ({ candidates }: Props) => {
+
+const CandidateBody = ({ candidate }: Props) => {
 	return (
 		<tbody>
-			{candidates.map((candidate, key) => (
-				<tr key={key}>
-					<CandidateCell candidateKey={candidate.full_name} />
-					<CandidateCell candidateKey={candidate.full_name} />
-					<CandidateCell candidateKey={candidate.birthday} />
-					<CandidateCell candidateKey={candidate.created_at} />
-					<CandidateDeleteButton candidate={candidate} />
-				</tr>
-			))}
+			<tr>
+				<CandidateCell
+					candidateKey={candidate.full_name}
+					candidateId={candidate.id}
+				/>
+				<CandidateCell
+					candidateKey={candidate.email}
+					candidateId={candidate.id}
+				/>
+				<CandidateCell
+					candidateKey={candidate.birthday}
+					candidateId={candidate.id}
+				/>
+				<CandidateCell
+					candidateKey={candidate.created_at}
+					candidateId={candidate.id}
+				/>
+				<CandidateButtons candidate={candidate} />
+			</tr>
 		</tbody>
 	);
 };

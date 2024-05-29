@@ -17,7 +17,7 @@ const Toast = ({ toast }: Props) => {
 
 	const toastColor = useMemo(() => {
 		if (toast.type === 'success') {
-			return 'bg-primary';
+			return 'border-green-600/70 bg-green-600/90';
 		}
 		if (toast.type === 'error') {
 			return 'border-red-600/90 bg-red-600/70';
@@ -55,7 +55,7 @@ const Toast = ({ toast }: Props) => {
 					: 'translate-x-full opacity-0'
 			} group/toast flex items-center justify-center
 			min-w-[200px] md:min-w-[300px] max-w-[400px] m-2
-			${toastColor} backdrop-blur-md
+			${toastColor} 
 			dark:backdrop-brightness-200 backdrop-contrast-200
 			transition-all ease-out duration-500
 			`}
