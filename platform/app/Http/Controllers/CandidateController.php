@@ -21,15 +21,7 @@ final class CandidateController extends Controller
     {
         return CandidateResource::collection(Candidate::all());
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCandidateRequest $request): void
-    {
-        //
-    }
-
+    
     /**
      * Display the specified resource.
      */
