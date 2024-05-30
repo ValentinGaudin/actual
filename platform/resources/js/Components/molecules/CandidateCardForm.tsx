@@ -1,10 +1,15 @@
 import React, { Suspense, useMemo } from 'react';
 import { HTTPError } from 'ky';
+
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FormikHelpers } from 'formik/dist/types';
 import { FieldProps } from 'formik/dist/Field';
+
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Button } from '@/shadcn/ui/button';
@@ -60,6 +65,8 @@ const CandidateCardForm = () => {
 		options: initialOptions ?? [],
 	};
 
+	const navigate = useNavigate();
+
 	const handleSubmit = async (
 		values: UpdatePayloadCandidate,
 		formikHelpers: FormikHelpers<UpdatePayloadCandidate>
@@ -72,6 +79,7 @@ const CandidateCardForm = () => {
 			});
 
 			await queryClient.invalidateQueries({ queryKey: ['candidate'] });
+			navigate(`/candidates/${candidateId}`);
 		} catch (err: unknown) {
 			if (err instanceof HTTPError && err.response?.status === 422) {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
