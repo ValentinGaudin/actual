@@ -10,6 +10,8 @@ use App\Models\Candidate;
 use App\Objects\Values\CandidateValuesObject;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 final class CandidateController extends Controller
 {
@@ -34,6 +36,11 @@ final class CandidateController extends Controller
      */
     public function update(UpdateCandidateRequest $request, Candidate $candidate): JsonResponse
     {
+        Validator::make(data: $request->toArray(), rules: [
+            'nir' => [
+                Rule::unique(table: 'candidates', column: 'nir')->ignore(id: $candidate->id),
+            ],
+        ]);
         $candidateObject = CandidateValuesObject::make($request);
 
         $missions = $candidateObject->getMissions();

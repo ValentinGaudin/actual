@@ -6,7 +6,7 @@ set -e
 cp .env.example .env
 composer install
 php artisan key:generate
-php artisan migrate:fresh --force --seed --isolated
+php artisan migrate:fresh --force --seed
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then

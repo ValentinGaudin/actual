@@ -29,7 +29,7 @@ final class UpdateCandidateRequest extends FormRequest
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email'],
             'birthday' => ['required', 'string'],
-            'nir' => ['required', 'string', 'max:15', 'unique:candidates,nir', new NirRule],
+            'nir' => ['required', 'string', 'max:15', new NirRule],
             'options' => ['array'],
         ];
     }
