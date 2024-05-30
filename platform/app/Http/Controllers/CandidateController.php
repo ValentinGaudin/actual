@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
@@ -20,14 +19,6 @@ final class CandidateController extends Controller
     public function index(): AnonymousResourceCollection
     {
         return CandidateResource::collection(Candidate::all());
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCandidateRequest $request): void
-    {
-        //
     }
 
     /**

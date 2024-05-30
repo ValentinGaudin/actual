@@ -89,8 +89,8 @@ const CandidateCard = () => {
 				<Card className="dark:bg-black/40">
 					<CardHeader className="flex flex-row justify-between items-center w-full">
 						<img
-							src="https://avatars0.githubusercontent.com/u/35900628?v=4"
-							alt=""
+							src="https://picsum.photos/200"
+							alt="a lorem piscum image"
 							className="rounded-full w-16 h-16 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
 						/>
 						<CardTitle className="font-bold text-3xl">
