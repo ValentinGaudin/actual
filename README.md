@@ -10,12 +10,12 @@
 ## Table of Contents
 
 - [About the Project](#about-the-project)
-    - [Built With](#built-with)
+  - [Built With](#built-with)
 - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Additional Configuration](#Additional-Configuration)
-    - [Routing](#routing)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Additional Configuration](#Additional-Configuration)
+  - [Routing](#routing)
 - [Contact](#contact)
 
 ## About The Project
@@ -33,9 +33,11 @@ Actual is a web application based on a REST API built with Laravel on back-end a
 - [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
 - [Zod](https://zod.dev/)
 - [TanStack](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [ShaDCN](https://ui.shadcn.com/)
+- [React Big Calendar](https://github.com/jquense/react-big-calendar)
+- [Formik](https://formik.org/)
 
 ## Getting Started
-
 ### Prerequisites
 
 Make sure you have the following tools installed on your machine:
@@ -56,9 +58,21 @@ Now you can build and start the project :
 docker compose up --build -d
 ```
 
+This will automatically start the project, if you want to run some specific command :
+
+#### PHP
+```shell
+docker compose exec platform bash
+```
+#### NODE
+```shell
+docker compose exec platform_vite bash
+```
+
 ### Routing
 
-- [Home](https://actual.localhost)
+- [Home](http://actual.localhost)
+- [Vite Server](http://vite.actual.localhost)
 - [PhpMyAdmin](https://pma.actual.localhost)
 
 ## Contact
