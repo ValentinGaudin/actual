@@ -10,6 +10,7 @@ export const CandidateSchema = z.object({
 	full_name: z.string(),
 	email: z.string(),
 	birthday: z.string(),
+	nir: z.string(),
 	missions: MissionSchema.array(),
 	updated_at: z.string(),
 	created_at: z.string(),
@@ -33,6 +34,7 @@ export const CandidateUpdatePayloadSchema = z.object({
 		.max(20, 'Username is too long'),
 	email: z.string().email('Invalid email address').min(5, 'Email is too short'),
 	birthday: z.string(),
+	nir: z.string().length(15, 'nir is must have 15 char'),
 	options: OptionSchema.array(),
 });
 

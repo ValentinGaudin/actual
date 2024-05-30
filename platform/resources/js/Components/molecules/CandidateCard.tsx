@@ -93,11 +93,17 @@ const CandidateCard = () => {
 							alt="a lorem piscum image"
 							className="rounded-full w-16 h-16 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
 						/>
-						<CardTitle className="font-bold text-3xl">
+						<CardTitle className="font-bold text-3xl ms-2">
 							{data.full_name}
 						</CardTitle>
 						<CardDescription className="flex items-center">
-							{new Date(data.birthday).toLocaleDateString().split('T')[0]}
+							<span className="flex flex-col">
+								<span>
+									Date de naissance :{' '}
+									{new Date(data.birthday).toLocaleDateString().split('T')[0]}
+								</span>
+								<span>INSEE : {data.nir}</span>
+							</span>
 						</CardDescription>
 						<div className="flex flex-row space-x-2">
 							<CandidateEdit candidate={data} />

@@ -12,7 +12,7 @@ describe('Candidate model', function () {
         $candidate = new Candidate;
 
         expect($candidate->getFillable())
-            ->toEqual(['first_name', 'last_name', 'email', 'birthday', 'updated_at', 'created_at']);
+            ->toEqual(['first_name', 'last_name', 'email', 'birthday', 'nir', 'updated_at', 'created_at']);
     });
 
     it('casts properties correctly', function () {
@@ -39,6 +39,7 @@ describe('Candidate model', function () {
             'last_name' => 'Doe',
             'email' => 'jane.doe@example.com',
             'birthday' => '1985-05-15',
+            'nir' => '185156833160653',
         ]);
 
         expect($candidate)->toBeInstanceOf(Candidate::class)

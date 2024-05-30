@@ -18,7 +18,7 @@ final class CandidateValuesObject implements JsonSerializable
      * @param  SupportCollection<int, array{value: int, label: string}>  $options
      * @param  array<int>|EloquentCollection<int, Mission>  $missions
      */
-    public function __construct(public string $firstName, public string $lastName, public string $email, public Carbon $birthday, public SupportCollection $options, public array|EloquentCollection $missions)
+    public function __construct(public string $firstName, public string $lastName, public string $email, public Carbon $birthday, public string $nir, public SupportCollection $options, public array|EloquentCollection $missions)
     {
         $this->constructMissions();
     }
@@ -32,6 +32,7 @@ final class CandidateValuesObject implements JsonSerializable
             birthday: new Carbon(
                 time: $request->string('birthday')->toString()
             ),
+            nir: $request->string('nir')->toString(),
             options: $request->collect('options'),
             missions: []
         );
@@ -48,6 +49,7 @@ final class CandidateValuesObject implements JsonSerializable
             'last_name' => $this->getLastName(),
             'email' => $this->getEmail(),
             'birthday' => $this->getBirthday(),
+            'nir' => $this->getNir(),
         ];
     }
 
@@ -93,5 +95,10 @@ final class CandidateValuesObject implements JsonSerializable
     public function getMissions(): array|EloquentCollection
     {
         return $this->missions;
+    }
+
+    public function getNir(): string
+    {
+        return $this->nir;
     }
 }

@@ -59,6 +59,7 @@
         "date-fns": "^3.6.0",
         "formik": "^2.4.6",
         "input": "^1.0.1",
+        "input-otp": "^1.2.4",
         "ky": "^1.2.4",
         "laravel-vite-plugin": "^1.0.4",
         "localforage": "^1.10.0",
