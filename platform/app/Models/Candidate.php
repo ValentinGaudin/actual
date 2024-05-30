@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property-read string $full_name
  * @property string $email
  * @property Carbon $birthday
+ * @property int $nir
  * @property-read Collection<int, Mission> $missions
  * @property Carbon $updated_at
  * @property Carbon $created_at
@@ -28,7 +29,7 @@ final class Candidate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'birthday', 'updated_at', 'created_at'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'birthday', 'nir', 'updated_at', 'created_at'];
 
     protected $appends = ['full_name'];
 

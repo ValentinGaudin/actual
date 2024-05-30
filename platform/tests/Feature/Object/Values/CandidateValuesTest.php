@@ -23,6 +23,7 @@ it('can be instantiated correctly', function () {
         lastName: $lastName,
         email: $email,
         birthday: $birthday,
+        nir: '208016833160653',
         options: $options,
         missions: []
     );
@@ -60,6 +61,7 @@ it('can be serialized to JSON', function () {
         lastName: 'Doe',
         email: 'john.doe@example.com',
         birthday: Carbon::parse('1990-01-01'),
+        nir: '190016833160653',
         options: new SupportCollection,
         missions: []
     );
@@ -71,6 +73,7 @@ it('can be serialized to JSON', function () {
         'last_name' => 'Doe',
         'email' => 'john.doe@example.com',
         'birthday' => Carbon::parse('1990-01-01'),
+        'nir' => '190016833160653',
     ]);
 });
 
@@ -87,6 +90,7 @@ it('constructs missions correctly', function () {
         lastName: 'Doe',
         email: 'john.doe@example.com',
         birthday: Carbon::parse('1990-01-01'),
+        nir: '190016833160653',
         options: $options,
         missions: []
     );

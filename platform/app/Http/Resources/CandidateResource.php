@@ -27,6 +27,7 @@ final class CandidateResource extends JsonResource
             'full_name' => $this->full_name,
             'email' => $this->email,
             'birthday' => $this->birthday->format('Y-m-d'),
+            'nir' => $this->nir,
             'missions' => MissionResource::collection($this->missions),
             'updated_at' => $this->updated_at->format('Y-m-d'),
             'created_at' => $this->created_at->format('Y-m-d'),

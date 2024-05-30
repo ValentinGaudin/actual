@@ -25,7 +25,11 @@ import { getCandidate, updateCandidate } from '@/services/http/candidate';
 
 import { useToasterStore } from '@/hooks';
 
-import { CandidateFormInput, CustomSelect } from '@/Components/atoms';
+import {
+	CandidateFormInput,
+	CustomSelect,
+	InputInsee,
+} from '@/Components/atoms';
 
 type Params = {
 	candidateId: string;
@@ -62,6 +66,7 @@ const CandidateCardForm = () => {
 		last_name: data?.last_name ?? '',
 		email: data?.email ?? '',
 		birthday: data?.birthday ?? '',
+		nir: data?.nir ?? '',
 		options: initialOptions ?? [],
 	};
 
@@ -110,7 +115,7 @@ const CandidateCardForm = () => {
 						)}
 					>
 						{({ errors, touched }) => (
-							<Form className="flex flex-col items-center space-y-6 w-3/4 lg:w-3/4 dark:bg-gray-900/40 bg-zinc-50 rounded-xl backdrop-blur drop-shadow px-2 py-5">
+							<Form className="flex flex-col items-center space-y-6 dark:bg-gray-900/40 bg-zinc-50 rounded-xl backdrop-blur drop-shadow px-2 py-5">
 								<CandidateFormInput
 									id="first_name"
 									placeholder="John"
@@ -150,6 +155,14 @@ const CandidateCardForm = () => {
 									defaultValue={initialValue.birthday}
 								/>
 
+								<InputInsee
+									errors={errors}
+									id={'nir'}
+									title={'Numéro de sécurité social'}
+									touched={touched}
+									defaultValue={initialValue.nir}
+								/>
+
 								<div className="flex flex-col md:flex-row items-center md:justify-between justify-center md:w-3/5">
 									<div className="md:w-1/3">
 										<label
@@ -181,7 +194,7 @@ const CandidateCardForm = () => {
 										/>
 									) : null}
 								</div>
-								<Button>Enregistrer</Button>
+								<Button type="submit">Enregistrer</Button>
 							</Form>
 						)}
 					</Formik>

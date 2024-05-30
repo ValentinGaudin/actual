@@ -25,6 +25,7 @@ describe('Candidates Resources', function () {
             'last_name' => 'Doe',
             'email' => 'john.doe@example.com',
             'birthday' => '1990-01-01',
+            'nir' => '190156833160653',
             'created_at' => '2023-05-15 12:00:00',
             'updated_at' => '2023-05-15 12:00:00',
         ]);
@@ -41,6 +42,7 @@ describe('Candidates Resources', function () {
             'full_name' => 'Doe John',
             'email' => 'john.doe@example.com',
             'birthday' => '1990-01-01',
+            'nir' => '190156833160653',
             'created_at' => '2023-05-15',
             'updated_at' => '2023-05-15',
             'missions' => MissionResource::collection($candidate->missions),

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Rules\NirRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 final class UpdateCandidateRequest extends FormRequest
@@ -28,6 +29,7 @@ final class UpdateCandidateRequest extends FormRequest
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email'],
             'birthday' => ['required', 'string'],
+            'nir' => ['required', 'string', 'max:15', 'unique:candidates,nir', new NirRule],
             'options' => ['array'],
         ];
     }
