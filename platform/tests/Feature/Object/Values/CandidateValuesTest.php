@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Models\Mission;
@@ -59,7 +60,7 @@ it('can be serialized to JSON', function () {
         lastName: 'Doe',
         email: 'john.doe@example.com',
         birthday: Carbon::parse('1990-01-01'),
-        options: new SupportCollection(),
+        options: new SupportCollection,
         missions: []
     );
 

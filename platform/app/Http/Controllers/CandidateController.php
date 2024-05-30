@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
@@ -21,7 +20,7 @@ final class CandidateController extends Controller
     {
         return CandidateResource::collection(Candidate::all());
     }
-    
+
     /**
      * Display the specified resource.
      */
